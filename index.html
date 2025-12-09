@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Deposits Tracker</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- PWA manifest -->
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#e63946" />
+
+  <!-- Icons (PWA + favicon) -->
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" sizes="512x512" href="icons/icon-512.png" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="app-header">
+      <div class="logo-circle">D</div>
+      <div>
+        <h1>Deposits Tracker</h1>
+        <p class="subtitle">Simple event deposits for your university</p>
+      </div>
+    </header>
+
+    <main class="app-main">
+      <!-- HOME SCREEN -->
+      <section id="home-screen" class="screen active">
+        <h2 class="screen-title">Welcome</h2>
+        <p class="screen-desc">
+          Track deposits for each event in a clean, organized way.
+        </p>
+        <div class="card-group">
+          <button id="btn-access-existing" class="card-btn">
+            <h3>Access Existing Events</h3>
+            <p>View or edit previously saved events.</p>
+          </button>
+          <button id="btn-create-new" class="card-btn secondary">
+            <h3>Create New Event</h3>
+            <p>Add a new event and start recording deposits.</p>
+          </button>
+        </div>
+      </section>
+
+      <!-- EXISTING EVENTS SCREEN -->
+      <section id="existing-screen" class="screen">
+        <div class="screen-header">
+          <button class="btn ghost" id="back-from-existing">&larr; Home</button>
+          <h2 class="screen-title">Existing Events</h2>
+        </div>
+        <p class="screen-desc">
+          Tap an event to open and edit its deposit details.
+        </p>
+        <div id="events-list-container">
+          <p id="no-events-message" class="muted">
+            No events saved yet. Create one from the home screen.
+          </p>
+          <div id="events-list" class="events-list">
+            <!-- Filled by JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- CREATE NEW EVENT SCREEN -->
+      <section id="create-screen" class="screen">
+        <div class="screen-header">
+          <button class="btn ghost" id="back-from-create">&larr; Back</button>
+          <h2 class="screen-title">Create New Event</h2>
+        </div>
+
+        <form id="create-event-form" class="form">
+          <label class="form-field">
+            <span>Event Name</span>
+            <input type="text" id="new-event-name" placeholder="e.g., Shark Tank Night" required />
+          </label>
+
+          <label class="form-field">
+            <span>Event Date</span>
+            <input type="date" id="new-event-date" required />
+          </label>
+
+          <h3 class="section-heading">Student Deposits</h3>
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Student Name</th>
+                  <th>Amount</th>
+                  <th>Comments</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="new-entries-tbody">
+                <!-- Rows added by JS -->
+              </tbody>
+            </table>
+          </div>
+          <button type="button" class="btn outline" id="btn-add-row-new">
+            + Add Row
+          </button>
+
+          <div class="form-actions">
+            <button type="submit" class="btn primary full">
+              Save Event
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- VIEW / EDIT EVENT SCREEN -->
+      <section id="view-screen" class="screen">
+        <div class="screen-header">
+          <button class="btn ghost" id="back-from-view">&larr; Back</button>
+          <h2 class="screen-title">View / Edit Event</h2>
+        </div>
+
+        <form id="view-event-form" class="form">
+          <input type="hidden" id="view-event-id" />
+
+          <label class="form-field">
+            <span>Event Name</span>
+            <input type="text" id="view-event-name" required />
+          </label>
+
+          <label class="form-field">
+            <span>Event Date</span>
+            <input type="date" id="view-event-date" required />
+          </label>
+
+          <h3 class="section-heading">Student Deposits</h3>
+          <div class="table-wrapper">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Student Name</th>
+                  <th>Amount</th>
+                  <th>Comments</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="view-entries-tbody">
+                <!-- Filled by JS -->
+              </tbody>
+            </table>
+          </div>
+
+          <button type="button" class="btn outline" id="btn-add-row-view">
+            + Add Row
+          </button>
+
+          <div class="form-actions spaced">
+            <button type="button" class="btn danger" id="btn-delete-event">
+              Delete Event
+            </button>
+            <button type="submit" class="btn primary">
+              Save Changes
+            </button>
+          </div>
+        </form>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <small>Data is stored only on this device · Works offline</small>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
