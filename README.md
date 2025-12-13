@@ -67,5 +67,8 @@ Analytics dashboard
 ---
 ## 👤 Author
 Steve Pellissery
-MS in Business Analytics, Clark University
+
+MS in Business Analytics, 
+
+Clark University
 
